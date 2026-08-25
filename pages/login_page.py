@@ -10,6 +10,7 @@ class LoginPageLocators:
 
     LOGIN_FIELD = (By.XPATH, "//input[@data-test-id='login-input']")
     PASSWORD_FIELD = (By.XPATH, "//input[@data-test-id='password-input']")
+    SHOW_PASSWORD = (By.XPATH, "//button[normalize-space()='Показать пароль']")
     ENTER_BUTTON = (By.XPATH, "//button[@data-test-id='enter-action']")
     QR_ENTER_BUTTON = (By.XPATH)
     FORGOT = (By.XPATH, "//button[@data-test-id='forgot-password-link']")
