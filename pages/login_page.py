@@ -1,5 +1,6 @@
 from pages.base_pages import BasePage
 from selenium.webdriver.common.by import By
+import allure
 
 
 class LoginPageLocators:
@@ -34,20 +35,28 @@ class LoginPageHelper(BasePage):
 
         self.find_element(LoginPageLocators.QR_CODE_TAB)
 
+    @allure.step('нажимаем кнопку Войти')
     def click_login(self):
+        self.attach_screenshot()
         self.find_element(LoginPageLocators.ENTER_BUTTON).click()
 
+    @allure.step('вводим невалидный логин')
     def input_invalid_login(self):
         self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys('abracadabra')
 
+    @allure.step('вводим невалидный пароль')
     def input_invalid_password(self):
         self.find_element(LoginPageLocators.PASSWORD_FIELD).send_keys('cadabra')
 
+    @allure.step('нажимаем на вкладку QR-код')
     def click_qr_tab(self):
         self.find_element(LoginPageLocators.QR_CODE_TAB).click()
 
+    @allure.step('')
     def check_qr_code(self):
         self.find_element(LoginPageLocators.QR_CODE_IMAGE)
 
+    @allure.step('получаем текст ошибки')
     def get_error_text(self):
+        self.attach_screenshot()
         return self.find_element(LoginPageLocators.ERROR_TEXT).text
