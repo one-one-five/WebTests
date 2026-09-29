@@ -17,6 +17,12 @@ class LoginPageLocators:
     QR_CODE_TAB = (By.XPATH, "//div[@id='tabQr']")
     QR_CODE_IMAGE = (By.XPATH, "//div [@id='qr-placeholder']")
 
+    HEADER_LOCKOUT = (By.XPATH, "//h2[@id='lockout-title']")
+    DESCRIPTION_LOCKOUT = (By.XPATH, "//p[@id='lockout-description']")
+    RECOVER_BUTTON = (By.XPATH, "//*[@id='lockout-recover-btn']")
+    CANCEL_BUTTON = (By.XPATH, "//button[@id='lockout-cancel-btn']")
+    REGISTER_BUTTON =  (By.XPATH, "//button[@id='lockout-register-btn']")
+
 
 class LoginPageHelper(BasePage):
     def __init__(self, driver):
@@ -40,13 +46,15 @@ class LoginPageHelper(BasePage):
         self.attach_screenshot()
         self.find_element(LoginPageLocators.ENTER_BUTTON).click()
 
-    @allure.step('вводим невалидный логин')
-    def input_invalid_login(self):
-        self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys('abracadabra')
+    @allure.step('вводим логин')
+    def input_login(self,login):
+        self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys(login)
+        self.attach_screenshot()
 
-    @allure.step('вводим невалидный пароль')
-    def input_invalid_password(self):
-        self.find_element(LoginPageLocators.PASSWORD_FIELD).send_keys('cadabra')
+    @allure.step('вводим пароль')
+    def input_password(self,password):
+        self.find_element(LoginPageLocators.PASSWORD_FIELD).send_keys(password)
+        self.attach_screenshot()
 
     @allure.step('нажимаем на вкладку QR-код')
     def click_qr_tab(self):
@@ -60,3 +68,8 @@ class LoginPageHelper(BasePage):
     def get_error_text(self):
         self.attach_screenshot()
         return self.find_element(LoginPageLocators.ERROR_TEXT).text
+
+    @allure.step('переходим к восстановлению')
+    def click_recovery(self):
+        self.attach_screenshot()
+        self.find_element(LoginPageLocators.RECOVER_BUTTON)
