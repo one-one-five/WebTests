@@ -5,8 +5,8 @@ import allure
 
 class RecoveryPageLocators:
     HEADERS_RECOVERY = (By.XPATH, "//h1[@id='recovery-title']")
-    PHONE = (By.XPATH, "//a[@id='recovery-phone-btn']")
-    E_MAIL = (By.XPATH, "//a[@id='recovery-email-btn']")
+    PHONE = (By.XPATH, "//*[@id='recovery-phone-btn']")
+    E_MAIL = (By.XPATH, "//*[@id='recovery-email-btn']")
     QR = (By.XPATH, "//div[@id='qr-image']")
     QR_INFO = (By.XPATH, "//div[@id='qr-info']")
     SUPPORT_BUTTON = (By.XPATH, "//button[@id='support-contact-btn']")
@@ -18,6 +18,7 @@ class RecoveryPageHelper(BasePage):
         self.check_page()
 
     def check_page(self):
+        self.attach_screenshot()
         self.find_element(RecoveryPageLocators.PHONE)
         self.find_element(RecoveryPageLocators.E_MAIL)
         self.find_element(RecoveryPageLocators.QR)

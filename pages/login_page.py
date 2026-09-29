@@ -30,6 +30,7 @@ class LoginPageHelper(BasePage):
         self.check_page()
 
     def check_page(self):
+        self.attach_screenshot()
         self.find_element(LoginPageLocators.HEADER)
 
         self.find_element(LoginPageLocators.ENTER_TAB)
@@ -72,4 +73,4 @@ class LoginPageHelper(BasePage):
     @allure.step('переходим к восстановлению')
     def click_recovery(self):
         self.attach_screenshot()
-        self.find_element(LoginPageLocators.RECOVER_BUTTON)
+        self.find_element(LoginPageLocators.RECOVER_BUTTON).click()
