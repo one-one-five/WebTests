@@ -37,6 +37,12 @@ class LoginPageHelper(BasePage):
     def click_login(self):
         self.find_element(LoginPageLocators.ENTER_BUTTON).click()
 
+    def input_invalid_login(self):
+        self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys('abracadabra')
+
+    def input_invalid_password(self):
+        self.find_element(LoginPageLocators.PASSWORD_FIELD).send_keys('cadabra')
+
     def click_qr_tab(self):
         self.find_element(LoginPageLocators.QR_CODE_TAB).click()
 
