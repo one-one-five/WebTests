@@ -1,3 +1,4 @@
+import allure
 from locators.recovery_locators import RecoveryLocators
 from pages.base_page import BasePage
 
@@ -8,9 +9,10 @@ class RecoveryPage(BasePage):
         self.check_page()
 
     def check_page(self):
-        self.attach_screenshot()
-        self.find_element(RecoveryLocators.PHONE)
-        self.find_element(RecoveryLocators.E_MAIL)
-        self.find_element(RecoveryLocators.QR)
-        self.find_element(RecoveryLocators.QR_INFO)
-        self.find_element(RecoveryLocators.SUPPORT_BUTTON)
+        with allure.step('Проверяем коректность загрузки элементов страницы'):
+            self.attach_screenshot()
+            self.find_element(RecoveryLocators.PHONE)
+            self.find_element(RecoveryLocators.E_MAIL)
+            self.find_element(RecoveryLocators.QR)
+            self.find_element(RecoveryLocators.QR_INFO)
+            self.find_element(RecoveryLocators.SUPPORT_BUTTON)

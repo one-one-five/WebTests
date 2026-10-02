@@ -10,17 +10,18 @@ class LoginPage(BasePage):
         self.check_page()
 
     def check_page(self):
-        self.attach_screenshot()
-        self.find_element(LoginLocators.HEADER)
+        with allure.step('Проверяем коректность загрузки элементов страницы'):
+            self.attach_screenshot()
+            self.find_element(LoginLocators.HEADER)
 
-        self.find_element(LoginLocators.ENTER_TAB)
-        self.find_element(LoginLocators.LOGIN_FIELD)
-        self.find_element(LoginLocators.PASSWORD_FIELD)
-        self.find_element(LoginLocators.ENTER_BUTTON)
+            self.find_element(LoginLocators.ENTER_TAB)
+            self.find_element(LoginLocators.LOGIN_FIELD)
+            self.find_element(LoginLocators.PASSWORD_FIELD)
+            self.find_element(LoginLocators.ENTER_BUTTON)
 
-        self.find_element(LoginLocators.FORGOT)
+            self.find_element(LoginLocators.FORGOT)
 
-        self.find_element(LoginLocators.QR_CODE_TAB)
+            self.find_element(LoginLocators.QR_CODE_TAB)
 
     @allure.step('нажимаем кнопку Войти')
     def click_login(self):
