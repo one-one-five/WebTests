@@ -98,6 +98,7 @@ report.html
 report.xml
 junit.xml
 allure-results/
+allure_results/
 allure-report/
 .allure/
 

@@ -1,62 +1,59 @@
-from pages.base_pages import BasePage
-from selenium.webdriver.common.by import By
 import allure
 
-
-class LoginPageLocators:
-    HEADER = (By.XPATH, "//h2[@id='login-title']")
-
-    ENTER_TAB = (By.XPATH, "//div[@id='tabLogin']")
-    LOGIN_FIELD = (By.XPATH, "//input [@id='login-phone-email']")
-    PASSWORD_FIELD = (By.XPATH, "//input [@id='login-password']")
-    ENTER_BUTTON = (By.XPATH, "//button[@id='login-submit-btn']")
-
-    FORGOT = (By.XPATH, "//a[@id='forgot-password-link']")
-    ERROR_TEXT = (By.XPATH, "//div[@id='login-error']")
-
-    QR_CODE_TAB = (By.XPATH, "//div[@id='tabQr']")
-    QR_CODE_IMAGE = (By.XPATH, "//div [@id='qr-placeholder']")
+from locators.login_locators import LoginLocators
+from pages.base_page import BasePage
+from pages.recovery_page import RecoveryPage
 
 
-class LoginPageHelper(BasePage):
+class LoginPage(BasePage):
     def __init__(self, driver):
         self.driver = driver
         self.check_page()
 
     def check_page(self):
-        self.find_element(LoginPageLocators.HEADER)
+        with allure.step('Проверяем коректность загрузки элементов страницы'):
+            self.attach_screenshot()
+            self.find_element(LoginLocators.HEADER)
 
-        self.find_element(LoginPageLocators.ENTER_TAB)
-        self.find_element(LoginPageLocators.LOGIN_FIELD)
-        self.find_element(LoginPageLocators.PASSWORD_FIELD)
-        self.find_element(LoginPageLocators.ENTER_BUTTON)
+            self.find_element(LoginLocators.ENTER_TAB)
+            self.find_element(LoginLocators.LOGIN_FIELD)
+            self.find_element(LoginLocators.PASSWORD_FIELD)
+            self.find_element(LoginLocators.ENTER_BUTTON)
 
-        self.find_element(LoginPageLocators.FORGOT)
+            self.find_element(LoginLocators.FORGOT)
 
-        self.find_element(LoginPageLocators.QR_CODE_TAB)
+            self.find_element(LoginLocators.QR_CODE_TAB)
 
     @allure.step('нажимаем кнопку Войти')
     def click_login(self):
         self.attach_screenshot()
-        self.find_element(LoginPageLocators.ENTER_BUTTON).click()
+        self.find_element(LoginLocators.ENTER_BUTTON).click()
 
-    @allure.step('вводим невалидный логин')
-    def input_invalid_login(self):
-        self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys('abracadabra')
+    @allure.step('вводим логин')
+    def input_login(self,login):
+        self.find_element(LoginLocators.LOGIN_FIELD).send_keys(login)
+        self.attach_screenshot()
 
-    @allure.step('вводим невалидный пароль')
-    def input_invalid_password(self):
-        self.find_element(LoginPageLocators.PASSWORD_FIELD).send_keys('cadabra')
+    @allure.step('вводим пароль')
+    def input_password(self,password):
+        self.find_element(LoginLocators.PASSWORD_FIELD).send_keys(password)
+        self.attach_screenshot()
 
     @allure.step('нажимаем на вкладку QR-код')
     def click_qr_tab(self):
-        self.find_element(LoginPageLocators.QR_CODE_TAB).click()
+        self.find_element(LoginLocators.QR_CODE_TAB).click()
 
-    @allure.step('')
+    @allure.step('проверяем отображение QR-кода»')
     def check_qr_code(self):
-        self.find_element(LoginPageLocators.QR_CODE_IMAGE)
+        self.find_element(LoginLocators.QR_CODE_IMAGE)
 
     @allure.step('получаем текст ошибки')
     def get_error_text(self):
         self.attach_screenshot()
-        return self.find_element(LoginPageLocators.ERROR_TEXT).text
+        return self.find_element(LoginLocators.ERROR_TEXT).text
+
+    @allure.step('переходим к восстановлению')
+    def click_recovery(self):
+        self.attach_screenshot()
+        self.find_element(LoginLocators.RECOVER_BUTTON).click()
+        return RecoveryPage(self.driver)
