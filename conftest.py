@@ -1,7 +1,7 @@
 import pytest
 from selenium import webdriver
 from config import BASE_URL
-from pages.base_pages import BasePage
+from pages.base_page import BasePage
 from pages.login_page import LoginPageHelper
 
 
