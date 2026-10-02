@@ -1,4 +1,5 @@
 import allure
+
 from pages.recovery_page import RecoveryPage
 
 LOGIN_TEXT = 'login'
