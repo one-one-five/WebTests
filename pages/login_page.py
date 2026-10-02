@@ -41,7 +41,7 @@ class LoginPage(BasePage):
     def click_qr_tab(self):
         self.find_element(LoginLocators.QR_CODE_TAB).click()
 
-    @allure.step('')
+    @allure.step('проверяем отображение QR-кода»')
     def check_qr_code(self):
         self.find_element(LoginLocators.QR_CODE_IMAGE)
 

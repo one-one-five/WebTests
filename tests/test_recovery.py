@@ -6,11 +6,11 @@ PASSWORD_TEXT = '1'
 
 
 @allure.suite('проверка восстановления пользователя')
-@allure.title('проверка перехода к восстановлению после нескольких неудачный попыток авторизации')
+@allure.title('проверка перехода к восстановлению после нескольких неудачных попыток авторизации')
 def test_go_to_recovery_many_fails(login_page):
     login_page.input_login(LOGIN_TEXT)
 
-    for i in range(3):
+    for _ in range(3):
         login_page.input_password(PASSWORD_TEXT)
         login_page.click_login()
 
