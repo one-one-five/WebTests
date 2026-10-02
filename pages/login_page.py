@@ -1,6 +1,7 @@
 from pages.base_pages import BasePage
 from selenium.webdriver.common.by import By
 import allure
+from pages.recovery_page import RecoveryPageHelper
 
 
 class LoginPageLocators:
@@ -74,3 +75,4 @@ class LoginPageHelper(BasePage):
     def click_recovery(self):
         self.attach_screenshot()
         self.find_element(LoginPageLocators.RECOVER_BUTTON).click()
+        return RecoveryPageHelper(self.driver)
