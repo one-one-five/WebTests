@@ -6,13 +6,13 @@ from pages.login_page import LoginPage
 
 
 @pytest.fixture(scope='session')
-def browser():
+def driver():
     driver = webdriver.Chrome()
     yield driver
     driver.quit()
 
 
 @pytest.fixture()
-def login_page(browser):
-    BasePage(browser).get_url(BASE_URL)
-    return LoginPage(browser)
+def login_page(driver):
+    BasePage(driver).get_url(BASE_URL)
+    return LoginPage(driver)
