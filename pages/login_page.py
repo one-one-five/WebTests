@@ -1,6 +1,7 @@
+import allure
+
 from locators.login_locators import LoginLocators
 from pages.base_page import BasePage
-import allure
 from pages.recovery_page import RecoveryPage
 
 

@@ -1,4 +1,5 @@
 import allure
+
 from locators.recovery_locators import RecoveryLocators
 from pages.base_page import BasePage
 
