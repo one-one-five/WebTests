@@ -17,12 +17,15 @@ class RecoveryByPhonePage(BasePage):
             self.find_element(RecoveryByPhoneLocators.COUNTRY_LIST)
             self.find_element(RecoveryByPhoneLocators.GET_CODE)
 
+    @allure.step('выбираем случайную страну в списке')
     def select_random_country(self):
         self.find_element(RecoveryByPhoneLocators.COUNTRY_LIST).click()
         country_item = choice(self.find_elements(RecoveryByPhoneLocators.COUNTRY_ITEM))
         country_code = country_item.text
-        country_item.click()
+        with allure.step(f'кликаем по стране с кодом {country_code}'):
+            country_item.click()
         return country_code
 
+    @allure.step('получаем значение поля телефона')
     def get_phone_field_value(self):
         return self.find_element(RecoveryByPhoneLocators.PHONE).get_attribute('value')
