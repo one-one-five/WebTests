@@ -1,7 +1,7 @@
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 import allure
-from pages.recovery_page import RecoveryPageHelper
+from pages.recovery_page import RecoveryPage
 
 
 class LoginPageLocators:
@@ -25,7 +25,7 @@ class LoginPageLocators:
     REGISTER_BUTTON =  (By.XPATH, "//button[@id='lockout-register-btn']")
 
 
-class LoginPageHelper(BasePage):
+class LoginPage(BasePage):
     def __init__(self, driver):
         self.driver = driver
         self.check_page()
@@ -75,4 +75,4 @@ class LoginPageHelper(BasePage):
     def click_recovery(self):
         self.attach_screenshot()
         self.find_element(LoginPageLocators.RECOVER_BUTTON).click()
-        return RecoveryPageHelper(self.driver)
+        return RecoveryPage(self.driver)

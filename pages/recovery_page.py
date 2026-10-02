@@ -12,7 +12,7 @@ class RecoveryPageLocators:
     SUPPORT_BUTTON = (By.XPATH, "//button[@id='support-contact-btn']")
 
 
-class RecoveryPageHelper(BasePage):
+class RecoveryPage(BasePage):
     def __init__(self, driver):
         self.driver = driver
         self.check_page()
