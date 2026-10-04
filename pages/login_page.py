@@ -57,3 +57,9 @@ class LoginPage(BasePage):
         self.attach_screenshot()
         self.find_element(LoginLocators.RECOVER_BUTTON).click()
         return RecoveryPage(self.driver)
+
+    @allure.step('нажимаем на ссылку восстановления пароля')
+    def click_forgot(self):
+        self.attach_screenshot()
+        self.find_element(LoginLocators.FORGOT).click()
+        return RecoveryPage(self.driver)
